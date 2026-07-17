@@ -6,12 +6,14 @@ public class PlayerInputProvider : MonoBehaviour, IInputProvider
     private InputAction moveAction;
     private InputAction jumpAction;
     private InputAction dashAction;
-    private InputAction attackAction;
+    private InputAction LightAttackAction;
+    private InputAction HeavyAttackAction;
 
     public Vector2 MoveInput { get; private set; }
     public bool JumpTriggered { get; private set; }
     public bool DashTriggered { get; private set; }
-    public bool AttackTriggered { get; private set; }
+    public bool LightAttackTriggered { get; private set; }
+    public bool HeavyAttackTriggered { get; private set; }
 
     private void Awake()
     {
@@ -24,12 +26,14 @@ public class PlayerInputProvider : MonoBehaviour, IInputProvider
         moveAction = InputSystem.actions.FindAction("Move");
         jumpAction = InputSystem.actions.FindAction("Jump");
         dashAction = InputSystem.actions.FindAction("Dash");
-        attackAction = InputSystem.actions.FindAction("Attack");
+        LightAttackAction = InputSystem.actions.FindAction("LightAttack");
+        HeavyAttackAction = InputSystem.actions.FindAction("HeavyAttack");
 
         if (moveAction == null) Debug.LogError("Move action not found!");
         if (jumpAction == null) Debug.LogError("Jump action not found!");
         if (dashAction == null) Debug.LogError("Dash action not found!");
-        if (attackAction == null) Debug.LogError("Attack action not found!");
+        if (LightAttackAction == null) Debug.LogError("Light Attack action not found!");
+        if (HeavyAttackAction == null) Debug.LogError("Heavy Attack action not found!");
     }
 
     private void Update()
@@ -38,6 +42,7 @@ public class PlayerInputProvider : MonoBehaviour, IInputProvider
 
         JumpTriggered = jumpAction != null && jumpAction.WasPressedThisFrame();
         DashTriggered = dashAction != null && dashAction.WasPressedThisFrame();
-        AttackTriggered = attackAction != null && attackAction.WasPressedThisFrame();
+        LightAttackTriggered = LightAttackAction != null && LightAttackAction.WasPressedThisFrame();
+        HeavyAttackTriggered = HeavyAttackAction != null && HeavyAttackAction.WasPressedThisFrame();
     }
 }

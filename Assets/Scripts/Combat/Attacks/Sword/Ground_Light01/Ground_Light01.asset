@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3231e538f088a5f49a0ef2bde93d112a, type: 3}
+  m_Name: Ground_Light01
+  m_EditorClassIdentifier: Assembly-CSharp::AttackData
+  attackName: Sword_Light_Ground01
+  animatorState:
+    state: Ground_Light01
+  damage: 10
+  knockback: 5
+  hitstop: 0.05
+  hitReaction: 1
+  presentation: {fileID: 11400000, guid: 4930ce9aa09a9394d8c7f7f4d7f004ed, type: 2}
+  allowRotation: 1
+  interruptible: 0
+  comboTransitions:
+  - requiredInput: 0
+    nextAttack: {fileID: 11400000, guid: f495265677bc3aa4ab3c335c91f1fe99, type: 2}

@@ -6,5 +6,7 @@ public interface IInputProvider
     bool JumpTriggered { get; }
 
     bool DashTriggered { get; }
-    bool AttackTriggered { get; }
+    bool LightAttackTriggered { get; }
+
+    bool HeavyAttackTriggered { get; }
 }
