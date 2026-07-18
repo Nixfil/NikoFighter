@@ -4,11 +4,13 @@ public class CombatAnimationEvents : MonoBehaviour
 {
     private CombatController combatController;
     private CombatPresentation combatPresentation;
+    private HitboxManager hitboxManager;
 
     private void Awake()
     {
         combatController = GetComponent<CombatController>();
         combatPresentation = GetComponent<CombatPresentation>();
+        hitboxManager = GetComponent<HitboxManager>();
 
         if (combatController == null)
             Debug.LogError("CombatController not found.");
@@ -81,5 +83,15 @@ public class CombatAnimationEvents : MonoBehaviour
     public void AnimationEvent_HitPresentation()
     {
         combatPresentation.PlayHitPresentation();
+    }
+
+    public void HitboxStart()
+    {
+        hitboxManager.EnableHitboxes();
+    }
+
+    public void HitboxEnd()
+    {
+        hitboxManager.DisableHitboxes();
     }
 }

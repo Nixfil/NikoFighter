@@ -19,8 +19,51 @@ MonoBehaviour:
   knockback: 5
   hitstop: 0.05
   hitReaction: 1
+  actionGroups: []
   presentation: {fileID: 11400000, guid: 4930ce9aa09a9394d8c7f7f4d7f004ed, type: 2}
-  allowRotation: 1
+  anchors:
+  - type: 0
+    customName: Player
+    localPosition: {x: 0, y: 0, z: 0}
+    localRotation: {x: 0, y: 0, z: 0}
+    followPlayerRotation: 1
+    ignorePlayerPitch: 0
+    snapToGround: 0
+  hitboxes:
+  - anchor:
+      type: 0
+      customName: 
+    localPosition: {x: 0, y: 0, z: 0.92}
+    localRotation: {x: 0, y: 0, z: 0}
+    shape: 1
+    size: {x: 1, y: 1, z: 1}
+    radius: 0.63
+    targets:
+      serializedVersion: 2
+      m_Bits: 128
+  - anchor:
+      type: 0
+      customName: 
+    localPosition: {x: 0.7, y: 0, z: 0.6}
+    localRotation: {x: 0, y: 0, z: 0}
+    shape: 1
+    size: {x: 1, y: 1, z: 1}
+    radius: 0.63
+    targets:
+      serializedVersion: 2
+      m_Bits: 128
+  - anchor:
+      type: 0
+      customName: 
+    localPosition: {x: -0.7, y: 0, z: 0.6}
+    localRotation: {x: 0, y: 0, z: 0}
+    shape: 1
+    size: {x: 1, y: 1, z: 1}
+    radius: 0.63
+    targets:
+      serializedVersion: 2
+      m_Bits: 128
+  allowRotation: 0
   interruptible: 0
   comboTransitions:
   - requiredInput: 0

@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3231e538f088a5f49a0ef2bde93d112a, type: 3}
+  m_Name: Ground_Light03
+  m_EditorClassIdentifier: Assembly-CSharp::AttackData
+  attackName: Sword_Light_Ground03
+  animatorState:
+    state: Ground_Light03
+  damage: 5
+  knockback: 5
+  hitstop: 0.05
+  hitReaction: 1
+  actionGroups:
+  - eventName: StartDashAction
+    actions:
+    - {fileID: 11400000, guid: 79bf6ae905ddb9347808748370aa72e9, type: 2}
+  presentation: {fileID: 11400000, guid: 258490fdfbd6a8b4b9ad7f0c456cec10, type: 2}
+  anchors:
+  - type: 0
+    customName: Player
+    localPosition: {x: 0, y: 0, z: 0}
+    localRotation: {x: 0, y: 0, z: 0}
+    followPlayerRotation: 1
+    ignorePlayerPitch: 0
+    snapToGround: 0
+  hitboxes:
+  - anchor:
+      type: 0
+      customName: 
+    localPosition: {x: 0, y: 0, z: 1}
+    localRotation: {x: 0, y: 0, z: 0}
+    shape: 0
+    size: {x: 1, y: 1, z: 1.6}
+    radius: 0
+    targets:
+      serializedVersion: 2
+      m_Bits: 128
+  allowRotation: 0
+  interruptible: 0
+  comboTransitions: []

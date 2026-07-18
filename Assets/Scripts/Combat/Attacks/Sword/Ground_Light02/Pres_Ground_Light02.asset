@@ -12,5 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9c9c143ccafd23498922d5972d90256, type: 3}
   m_Name: Pres_Ground_Light02
   m_EditorClassIdentifier: Assembly-CSharp::AttackPresentation
-  attackVFXPrefab: {fileID: 5484781418084618338, guid: 59cd29cfc1fc60d49b79b3bab605c0a2, type: 3}
-  impactVFXPrefab: {fileID: 0}
+  attackEffects:
+  - anchor:
+      type: 0
+      customName: 
+    followMode: 1
+    prefab: {fileID: 5484781418084618338, guid: 59cd29cfc1fc60d49b79b3bab605c0a2, type: 3}
+  hitEffects: []

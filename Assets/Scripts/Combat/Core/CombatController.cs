@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 [RequireComponent(typeof(CharacterMovement3D))]
 [RequireComponent(typeof(Animator))]
@@ -195,5 +196,56 @@ public class CombatController : MonoBehaviour
 
         queuedInput = default;
         currentAttack = null;
+    }
+    private void OnDrawGizmosSelected()
+    {
+        if (currentAttack == null)
+            return;
+
+        foreach (var hitbox in currentAttack.hitboxes)
+        {
+            Pose hitboxPose =
+                CombatHitboxUtility.ResolveHitboxPose(
+                    transform,
+                    currentAttack,
+                    hitbox);
+
+            CombatHitboxUtility.DrawGizmo(
+                hitbox,
+                hitboxPose);
+        }
+    }
+    private AttackContext BuildContext()
+    {
+        return new AttackContext
+        {
+            Combat = this,
+            Attack = currentAttack,
+            Attacker = gameObject,
+            Transform = transform,
+            Animator = animator
+        };
+    }
+    public void ExecuteActionGroup(string eventName)
+    {
+        if (currentAttack == null)
+            return;
+
+        AttackContext context = BuildContext();
+
+        foreach (AttackActionGroup group in currentAttack.ActionGroups)
+        {
+            if (group.eventName != eventName)
+                continue;
+
+            foreach (AttackAction action in group.actions)
+            {
+                action.Execute(context);
+            }
+        }
+    }
+    public Coroutine RunActionCoroutine(IEnumerator routine)
+    {
+        return StartCoroutine(routine);
     }
 }

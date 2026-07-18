@@ -12,14 +12,59 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3231e538f088a5f49a0ef2bde93d112a, type: 3}
   m_Name: Ground_Light02
   m_EditorClassIdentifier: Assembly-CSharp::AttackData
-  attackName: Sword_Light_Ground01
+  attackName: Sword_Light_Ground02
   animatorState:
     state: Ground_Light02
-  damage: 10
+  damage: 15
   knockback: 5
   hitstop: 0.05
   hitReaction: 1
+  actionGroups: []
   presentation: {fileID: 11400000, guid: febffb40775e1574e9baaa78b34dede3, type: 2}
-  allowRotation: 1
+  anchors:
+  - type: 0
+    customName: Player
+    localPosition: {x: 0, y: 0, z: 0}
+    localRotation: {x: 0, y: 0, z: 0}
+    followPlayerRotation: 1
+    ignorePlayerPitch: 0
+    snapToGround: 0
+  hitboxes:
+  - anchor:
+      type: 0
+      customName: 
+    localPosition: {x: 0, y: 0, z: 0.92}
+    localRotation: {x: 0, y: 0, z: 0}
+    shape: 1
+    size: {x: 1, y: 1, z: 1}
+    radius: 0.63
+    targets:
+      serializedVersion: 2
+      m_Bits: 128
+  - anchor:
+      type: 0
+      customName: 
+    localPosition: {x: 0.7, y: 0, z: 0.6}
+    localRotation: {x: 0, y: 0, z: 0}
+    shape: 1
+    size: {x: 1, y: 1, z: 1}
+    radius: 0.63
+    targets:
+      serializedVersion: 2
+      m_Bits: 128
+  - anchor:
+      type: 0
+      customName: 
+    localPosition: {x: -0.7, y: 0, z: 0.6}
+    localRotation: {x: 0, y: 0, z: 0}
+    shape: 1
+    size: {x: 1, y: 1, z: 1}
+    radius: 0.63
+    targets:
+      serializedVersion: 2
+      m_Bits: 128
+  allowRotation: 0
   interruptible: 0
-  comboTransitions: []
+  comboTransitions:
+  - requiredInput: 0
+    nextAttack: {fileID: 11400000, guid: 7c73fd53d9a8ae44e8847fb5e7c4cf6d, type: 2}

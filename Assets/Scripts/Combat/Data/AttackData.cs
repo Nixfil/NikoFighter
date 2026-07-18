@@ -23,9 +23,20 @@ public class AttackData : ScriptableObject
 
     public HitReaction hitReaction = HitReaction.Light;
 
+    [SerializeField]
+    private AttackActionGroup[] actionGroups;
+
+    public AttackActionGroup[] ActionGroups => actionGroups;
+
     [Header("Presentation")]
 
     public AttackPresentation presentation;
+
+    [Header("Anchors")]
+    public AttackAnchor[] anchors;
+
+    [Header("Hitboxes")]
+    public AttackHitbox[] hitboxes;
 
     [Header("Movement")]
 
@@ -36,6 +47,33 @@ public class AttackData : ScriptableObject
     [Header("Transitions")]
 
     public AttackTransition[] comboTransitions;
+
+    public AttackAnchor GetAnchor(AnchorReference reference)
+    {
+        if (reference == null)
+            return null;
+
+        foreach (AttackAnchor anchor in anchors)
+        {
+            if (reference.type == AnchorType.Custom)
+            {
+                if (anchor.type == AnchorType.Custom &&
+                    anchor.customName == reference.customName)
+                {
+                    return anchor;
+                }
+            }
+            else
+            {
+                if (anchor.type == reference.type)
+                {
+                    return anchor;
+                }
+            }
+        }
+
+        return null;
+    }
 }
 
 [Serializable]
@@ -80,4 +118,12 @@ public enum CombatState
     ChargedAttack,
 
     Special
+}
+
+[System.Serializable]
+public class AttackActionGroup
+{
+    public string eventName;
+
+    public AttackAction[] actions;
 }
