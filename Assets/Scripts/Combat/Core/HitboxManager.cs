@@ -1,10 +1,14 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.Analytics.IAnalytic;
 
 [RequireComponent(typeof(CombatController))]
 public class HitboxManager : MonoBehaviour
 {
     private CombatController combatController;
+
+    public Action<IDamageable, HitData> OnHit;
 
     private bool hitboxesEnabled;
 
@@ -58,7 +62,7 @@ public class HitboxManager : MonoBehaviour
                     Attack = attack
                 };
 
-                damageable.TakeHit(hit);
+                OnHit?.Invoke(damageable, hit);
             }
         }
     }

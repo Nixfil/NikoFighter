@@ -14,6 +14,8 @@ public class CombatController : MonoBehaviour
 
     private CharacterMovement3D movement;
     private Animator animator;
+    private HitboxManager hitboxManager;
+    private CombatPresentation presentation;
 
     private AttackData currentAttack;
     public AttackData CurrentAttack => currentAttack;
@@ -26,8 +28,11 @@ public class CombatController : MonoBehaviour
 
     private void Awake()
     {
+        presentation = GetComponent<CombatPresentation>();
+        hitboxManager = GetComponent<HitboxManager>();
         movement = GetComponent<CharacterMovement3D>();
         animator = GetComponent<Animator>();
+        hitboxManager.OnHit += HandleHit;
 
         if (inputProvider == null)
             inputProvider = GetComponent<IInputProvider>();
@@ -247,5 +252,11 @@ public class CombatController : MonoBehaviour
     public Coroutine RunActionCoroutine(IEnumerator routine)
     {
         return StartCoroutine(routine);
+    }
+    private void HandleHit(IDamageable target, HitData hit)
+    {
+        presentation.PlayHitPresentation(hit);
+
+        target.TakeHit(hit);
     }
 }

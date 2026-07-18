@@ -13,9 +13,16 @@ MonoBehaviour:
   m_Name: Pres_Ground_Light01
   m_EditorClassIdentifier: Assembly-CSharp::AttackPresentation
   attackEffects:
-  - anchor:
+  - spawnLocation: 0
+    anchor:
       type: 0
       customName: 
     followMode: 1
     prefab: {fileID: 3326488733167592826, guid: b435bbd0c29d4414e8c594e99e5d2a29, type: 3}
-  hitEffects: []
+  hitEffects:
+  - spawnLocation: 1
+    anchor:
+      type: 0
+      customName: 
+    followMode: 0
+    prefab: {fileID: 2547414346458993096, guid: 0145a760144b5af4384db8bd19c24cea, type: 3}

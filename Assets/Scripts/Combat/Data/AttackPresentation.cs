@@ -12,6 +12,8 @@ public class AttackPresentation : ScriptableObject
 [Serializable]
 public class AttackEffect
 {
+    public EffectSpawnLocation spawnLocation = EffectSpawnLocation.Anchor;
+
     public AnchorReference anchor;
 
     public EffectFollowMode followMode = EffectFollowMode.SpawnOnly;
@@ -22,4 +24,9 @@ public enum EffectFollowMode
 {
     SpawnOnly,
     FollowPlayer
+}
+public enum EffectSpawnLocation
+{
+    Anchor,
+    HitPoint
 }

@@ -80,11 +80,6 @@ public class CombatAnimationEvents : MonoBehaviour
         combatPresentation.PlayAttackPresentation();
     }
 
-    public void AnimationEvent_HitPresentation()
-    {
-        combatPresentation.PlayHitPresentation();
-    }
-
     public void HitboxStart()
     {
         hitboxManager.EnableHitboxes();

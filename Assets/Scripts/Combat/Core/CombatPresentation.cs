@@ -31,9 +31,9 @@ public class CombatPresentation : MonoBehaviour
         }
     }
 
-    public void PlayHitPresentation()
+    public void PlayHitPresentation(HitData hit)
     {
-        AttackData attack = combatController.CurrentAttack;
+        AttackData attack = hit.Attack;
 
         if (attack == null)
             return;
@@ -43,41 +43,63 @@ public class CombatPresentation : MonoBehaviour
 
         foreach (AttackEffect effect in attack.presentation.hitEffects)
         {
-            SpawnEffect(effect, attack);
+            SpawnEffect(effect, attack, hit);
         }
-
-        // Future:
-        // Camera Shake
-        // Audio
-        // Hit Stop
-        // Controller Rumble
     }
 
-    private void SpawnEffect(AttackEffect effect, AttackData attack)
+    private void SpawnEffect(
+    AttackEffect effect,
+    AttackData attack,
+    HitData? hit = null)
     {
         if (effect.prefab == null)
             return;
 
-        AttackAnchor anchor =
-            attack.GetAnchor(effect.anchor);
+        Pose pose;
 
-        if (anchor == null)
+        switch (effect.spawnLocation)
         {
-            Debug.LogWarning($"Missing anchor for effect '{effect.prefab.name}'.");
-            return;
+            case EffectSpawnLocation.Anchor:
+                {
+                    AttackAnchor anchor =
+                        attack.GetAnchor(effect.anchor);
+
+                    if (anchor == null)
+                    {
+                        Debug.LogWarning($"Missing anchor for effect '{effect.prefab.name}'.");
+                        return;
+                    }
+
+                    pose = AnchorResolver.Resolve(
+                        transform,
+                        anchor);
+
+                    break;
+                }
+
+            case EffectSpawnLocation.HitPoint:
+                {
+                    if (!hit.HasValue)
+                        return;
+
+                    pose = new Pose(
+                        hit.Value.HitPoint,
+                        Quaternion.LookRotation(hit.Value.Direction));
+
+                    break;
+                }
+
+            default:
+                return;
         }
 
-        Pose pose =
-            AnchorResolver.Resolve(
-                transform,
-                anchor);
-
         GameObject spawned = Instantiate(
-    effect.prefab,
-    pose.position,
-    pose.rotation);
+            effect.prefab,
+            pose.position,
+            pose.rotation);
 
-        if (effect.followMode == EffectFollowMode.FollowPlayer)
+        if (effect.followMode == EffectFollowMode.FollowPlayer &&
+            effect.spawnLocation == EffectSpawnLocation.Anchor)
         {
             spawned.transform.SetParent(transform, true);
         }
